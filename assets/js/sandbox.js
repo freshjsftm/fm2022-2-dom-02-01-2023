@@ -1,22 +1,15 @@
 "use strict";
+let count = 123456789;
 
-//debugger
-let value = 10; //global
-
-if(true){
-  let value = 30; //block
+function wrapperCounter(start = 0) {
+  let count = start;
+  return function counter() {
+    count++;
+    return count;
+  }
 }
-function log() {
-  console.log("function log:", value);
-}
-//log();
 
-function wrapper() {
-  let value = 20; //local
-  console.log("function wrapper:", value);
+const counter1 = wrapperCounter();
+console.log(counter1())
 
-  log();
-}
-wrapper();
-
-console.log('out functions value = ', value);
+const counter2 = wrapperCounter(100);
