@@ -17,23 +17,6 @@ function updateViewSlider() {
 }
 updateViewSlider();
 
-// function createSlideBtnHandler(dirrection = "next") {
-//   slider.currentIndex =
-//     slider[dirrection === "next" ? "nextIndex" : "prevIndex"];
-//   updateViewSlider();
-// }
-
-// prevBtn.addEventListener("click", () => createSlideBtnHandler("prev"));
-// nextBtn.addEventListener("click", () => createSlideBtnHandler("next"));
-
-// function createSlideBtnHandler(dirrection = "next") {
-//   //colback function - відпрацює після натискання на клік
-//   return () => {
-//     slider.currentIndex =
-//       slider[dirrection === "next" ? "nextIndex" : "prevIndex"];
-//     updateViewSlider();
-//   };
-// }
 const createSlideBtnHandler =
   (dirrection = "next") =>
   () => {
