@@ -1,15 +1,28 @@
 "use strict";
-let count = 123456789;
 
-function wrapperCounter(start = 0) {
+function createCounter(start = 0){
   let count = start;
-  return function counter() {
-    count++;
-    return count;
+  //debugger
+  return {
+    increment(){
+      //debugger
+      return ++count;
+    },
+    decrement(){
+      return --count;
+    },
   }
 }
 
-const counter1 = wrapperCounter();
-console.log(counter1())
+const counter1 = createCounter();
+// debugger
+console.log(counter1.increment())
+console.log(counter1.increment())
+console.log(counter1.decrement())
+console.log(counter1.increment())
 
-const counter2 = wrapperCounter(100);
+const counter2 = createCounter(10);
+console.log(counter2.decrement())
+console.log(counter2.decrement())
+console.log(counter2.decrement())
+console.log(counter2.decrement())
