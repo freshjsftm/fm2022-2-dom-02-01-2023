@@ -1,28 +1,42 @@
 "use strict";
 
-function createCounter(start = 0){
-  let count = start;
-  //debugger
-  return {
-    increment(){
-      //debugger
-      return ++count;
-    },
-    decrement(){
-      return --count;
-    },
-  }
-}
+/*
+const adder = createAdder(100);
+adder(14)  //114
+adder(10)  //124
+adder(100) //224
 
-const counter1 = createCounter();
-// debugger
-console.log(counter1.increment())
-console.log(counter1.increment())
-console.log(counter1.decrement())
-console.log(counter1.increment())
+const adder2 = createAdder(0);
+adder2(14)  //14
+adder2(10)  //24
+adder2(100) //124
+*/
 
-const counter2 = createCounter(10);
-console.log(counter2.decrement())
-console.log(counter2.decrement())
-console.log(counter2.decrement())
-console.log(counter2.decrement())
+/*
+ написати функцію, яка повертає функцію
+ перша функція приймає в якості аргуманта стартове значення
+ друга функція приймає в якості аргумента число, яке буде додаватися до накопичувальної суми
+ друга функція повертає накопичувальну суму
+*/
+
+//hight order function
+// function createAdder(start=0){
+//   let result = start; //closure
+//   return function (number){
+//     result += number;
+//     return result;
+//   }
+// }
+
+// function createAdder(start=0){
+//   return function (number){   
+//     return start += number;
+//   }
+// }
+
+const createAdder = (start=0) => (number) => start += number;
+
+const adder = createAdder(100);
+adder(14)  //114
+adder(10)  //124
+adder(100) //224
