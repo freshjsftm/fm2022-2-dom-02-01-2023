@@ -21,11 +21,11 @@ class Slider{
   get currentSlide(){
     return this._arraySlides[this._currentIndex];
   }
-  next(){
-    return this._currentIndex+1;
+  get nextIndex(){
+    return (this._currentIndex+1)%this._arraySlides.length; 
   }
-  prev(){
-    return this._currentIndex-1;
+  get prevIndex(){
+    // 0 - 1 + 3 = 2
+    return (this._currentIndex-1+this._arraySlides.length)%this._arraySlides.length;
   }
 }
-
