@@ -1,24 +1,20 @@
 "use strict";
 
 const unique = document.getElementById("unique");
+const img = document.getElementById("img");
 
-function log(event) {
-  console.group();
-  //event.cancelBubble = true
-  event.stopPropagation();
-  //console.log(event);
-  //елемент по якому клікнули
-  console.log("event.target", event.target);
-  //елемент чий обробник спрацював
-  console.log("event.currentTarget", event.currentTarget);
-  console.groupEnd();
+function createAttr(nameAttr, valueAttr) {
+  const srcAttr = document.createAttribute(nameAttr);
+  srcAttr.value = valueAttr;
+  return srcAttr;
 }
 
-unique.addEventListener("click", log);
-window.addEventListener("click", ()=>{console.log(123)}, {capture:true, once:true});
-document.body.addEventListener("click", log);
-document.addEventListener("click", log);
-window.addEventListener("click", log);
+//img.setAttributeNode(createAttr("title", "valueAttrElem"));
+
+// img.setAttribute("src", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg");
+
+img.src =
+  "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg";
 
 // const imagesDB = [
 //   "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg",
