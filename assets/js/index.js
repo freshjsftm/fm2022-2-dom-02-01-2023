@@ -2,30 +2,23 @@
 
 const unique = document.getElementById("unique");
 
-function showAlert() {
-  alert(2);
-  unique.removeEventListener("click", showAlert);
-  //unique.disabled = true;
+function log(event) {
+  console.group();
+  //event.cancelBubble = true
+  event.stopPropagation();
+  //console.log(event);
+  //елемент по якому клікнули
+  console.log("event.target", event.target);
+  //елемент чий обробник спрацював
+  console.log("event.currentTarget", event.currentTarget);
+  console.groupEnd();
 }
-function showLog() {
-  console.log(3);
-}
-// unique.onclick = showAlert;
-// unique.onclick = showLog;
 
-unique.addEventListener("click", showAlert);
-unique.addEventListener("click", showLog);
-
-unique.addEventListener("myevent", () => {
-  console.log("myevent")
-  console.log(unique);
-});
-
-const eventClick = new MouseEvent('dblclick');
-unique.dispatchEvent(eventClick);
-
-const eventMy = new Event('myevent');
-unique.dispatchEvent(eventMy);
+unique.addEventListener("click", log);
+window.addEventListener("click", ()=>{console.log(123)}, {capture:true, once:true});
+document.body.addEventListener("click", log);
+document.addEventListener("click", log);
+window.addEventListener("click", log);
 
 // const imagesDB = [
 //   "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg",
