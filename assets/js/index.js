@@ -1,20 +1,19 @@
 "use strict";
 
 const unique = document.getElementById("unique");
-const img = document.getElementById("img");
 
-function createAttr(nameAttr, valueAttr) {
-  const srcAttr = document.createAttribute(nameAttr);
-  srcAttr.value = valueAttr;
-  return srcAttr;
+//зібрати усі кнопки в масив
+const btns = document.querySelectorAll(".wrapper>button");
+//натискаючи на будь-яку отримати значення шляху
+for (const btn of btns) {
+  btn.addEventListener("click", ({ target:{dataset} }) => {
+    //const { target } = event;
+    console.log(dataset.path);
+    console.log(dataset.amountUse);
+  });
 }
 
-//img.setAttributeNode(createAttr("title", "valueAttrElem"));
-
-// img.setAttribute("src", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg");
-
-img.src =
-  "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg";
+//
 
 // const imagesDB = [
 //   "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ocean-quotes-index-1624414741.jpg",
