@@ -1,17 +1,22 @@
 "use strict";
 
-const unique = document.getElementById("unique");
-
-//зібрати усі кнопки в масив
-const btns = document.querySelectorAll(".wrapper>button");
-//натискаючи на будь-яку отримати значення шляху
-for (const btn of btns) {
-  btn.addEventListener("click", ({ target:{dataset} }) => {
-    //const { target } = event;
-    console.log(dataset.path);
-    console.log(dataset.amountUse);
-  });
+const unique = document.getElementById('unique');
+unique.onclick = function(event){
+  //event.target.innerText = '<em>qwerty</em>'
+  //event.target.outerText = '<em>qwerty</em>'
+  //event.target.innerHTML = '<em>qwerty</em>'
+  //event.target.outerHTML = '<em>qwerty</em>'
+  event.target.textContent = '<em>qwerty</em>'
+  console.log(event.target.innerText)
+  console.log(event.target.outerText)
+  console.log(event.target.textContent)
 }
+
+console.log(unique.innerText)
+console.log(unique.outerText)
+console.log(unique.textContent)
+
+
 
 //
 
