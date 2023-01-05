@@ -32,15 +32,21 @@ ul{
 .cardPhotoWrapper{
   width: var(--photo-size);
   height: var(--photo-size);
+  position: relative;
 }
-.cardInitial{
+.cardPhotoWrapper>*{
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.cardInitial{
   background-color: pink;
 }
 .cardPhoto{
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   object-position: top;
 }
