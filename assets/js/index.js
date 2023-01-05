@@ -16,7 +16,10 @@ function createCard(actor) {
 
   const divInintial = document.createElement("div");
   divInintial.classList.add("cardInitial");
-  divInintial.append(actor.name[0]);
+  //написати функцію, яка повертає ініціали
+  //і передати замість  actor.name[0]
+  //і додати їм красиві стилі
+  divInintial.append(document.createTextNode(actor.name[0]));
 
   const img = document.createElement("img");
   img.classList.add("cardPhoto");
