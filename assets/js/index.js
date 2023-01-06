@@ -25,7 +25,7 @@ function createCard(actor) {
   divInintial.style.backgroundColor = stringToColour(actor.name);
 
   const img = document.createElement("img");
-  img.hidden = true;
+  img.setAttribute("hidden", true);
   img.classList.add("cardPhoto");
   img.setAttribute("src", actor.photo);
   img.setAttribute("alt", actor.name);
@@ -54,3 +54,37 @@ function handlerImageError({ target }) {
 function handlerImageLoad({ target }) {
   target.hidden = false;
 }
+
+function createElement(tag='div', { classNames, listeners, attrs , styles}={}, children=[]) {
+  const elem = document.createElement(tag);
+  if (classNames) {
+    elem.classList.add(...classNames);
+  }
+  if (listeners) {
+    for (const [typeEvent, handler] of Object.entries(listeners)) {
+      elem.addEventListener(typeEvent, handler);
+    }
+  }
+  if (attrs) {
+    for (const [typeAttr, valueAttr] of Object.entries(attrs)) {
+      elem.setAttribute(typeAttr, valueAttr);
+    }
+  }
+  if (styles) {
+    for (const [nameStyle, valueStyle] of Object.entries(styles)) {
+      elem.style[nameStyle] = valueStyle;
+    }
+  }
+  elem.append(...children);
+  return elem;
+}
+
+
+
+
+
+// const elem = createElement("img", {
+//   classNames: ["cardPhoto", "test"],
+//   listeners: { error: handlerImageError, load: handlerImageLoad },
+//   attrs: { src: actor.photo, alt: actor.name, hidden: true },
+// });
