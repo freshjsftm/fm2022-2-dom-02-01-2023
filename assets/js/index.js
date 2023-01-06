@@ -2,7 +2,9 @@
 
 const cardsContainer = document.getElementById("cardsContainer");
 
-const actorCardsHTML = actors.map((actor) => createCard(actor));
+const actorCardsHTML = actors
+  .filter((actor) => actor.name)
+  .map((actor) => createCard(actor));
 
 function createCard(actor) {
   const cardHTML = document.createElement("li");
@@ -16,32 +18,39 @@ function createCard(actor) {
 
   const divInintial = document.createElement("div");
   divInintial.classList.add("cardInitial");
-  //написати функцію, яка повертає ініціали
-  //і передати замість  actor.name[0]
-  //і додати їм красиві стилі
-  divInintial.append(document.createTextNode(actor.name[0]));
+  divInintial.append(
+    document.createTextNode(getInitial(actor.name) || "noname")
+  );
+  console.log(stringToColour(actor.name));
+  divInintial.style.backgroundColor = stringToColour(actor.name);
 
   const img = document.createElement("img");
+  img.hidden = true;
   img.classList.add("cardPhoto");
   img.setAttribute("src", actor.photo);
   img.setAttribute("alt", actor.name);
-  img.addEventListener("error", () => {
-    img.remove();
-  });
+  img.addEventListener("error", handlerImageError);
+  img.addEventListener("load", handlerImageLoad);
 
   const fullName = document.createElement("h2");
   fullName.classList.add("cardName");
-  fullName.append(document.createTextNode(actor.name));
+  fullName.append(document.createTextNode(actor.name || "noname"));
 
   const description = document.createElement("p");
   description.classList.add("cardBirthdate");
-  description.append(document.createTextNode(actor.birthdate));
+  description.append(document.createTextNode(actor.birthdate || "not info"));
 
   divWrapper.append(divInintial, img);
-  //divWrapper.append(img);
   article.append(divWrapper, fullName, description);
   cardHTML.append(article);
   return cardHTML;
 }
 
 cardsContainer.append(...actorCardsHTML);
+
+function handlerImageError({ target }) {
+  target.remove();
+}
+function handlerImageLoad({ target }) {
+  target.hidden = false;
+}
