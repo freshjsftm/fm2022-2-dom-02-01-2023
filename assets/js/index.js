@@ -6,45 +6,70 @@ const actorCardsHTML = actors
   .filter((actor) => actor.name)
   .map((actor) => createCard(actor));
 
-function createCard(actor) {
-  const cardHTML = document.createElement("li");
-  cardHTML.classList.add("cardWrapper");
+function createCard(actor){
+  return createElement('li',{classNames:['cardWrapper']},
+    createElement('article',{classNames:['cardContainer']},
+      createElement('div', {classNames:['cardPhotoWrapper']},
+        createElement('div', {classNames:['cardInitial'], 
+          styles:{'backgroundColor':stringToColour(actor.name)}
+        },
+        document.createTextNode(getInitial(actor.name) || "noname")
+        ),
+        createElement('img', {
+          classNames:['cardPhoto'],
+          listeners: { 'error': handlerImageError, 'load': handlerImageLoad },
+          attrs: { 'src': actor.photo, 'alt': actor.name, 'hidden': true }
+        })
+      ),
+      createElement('h2', {classNames:['cardName']}, 
+        document.createTextNode(actor.name || 'noname')
+      ),
+      createElement('p', {classNames:['cardBirthdate']},
+        document.createTextNode(actor.birthdate || 'not info')
+      )
+    )
+  )
+}  
 
-  const article = document.createElement("article");
-  article.classList.add("cardContainer");
+// function createCard(actor) {
+//   const cardHTML = document.createElement("li");
+//   cardHTML.classList.add("cardWrapper");
 
-  const divWrapper = document.createElement("div");
-  divWrapper.classList.add("cardPhotoWrapper");
+//   const article = document.createElement("article");
+//   article.classList.add("cardContainer");
 
-  const divInintial = document.createElement("div");
-  divInintial.classList.add("cardInitial");
-  divInintial.append(
-    document.createTextNode(getInitial(actor.name) || "noname")
-  );
-  console.log(stringToColour(actor.name));
-  divInintial.style.backgroundColor = stringToColour(actor.name);
+//   const divWrapper = document.createElement("div");
+//   divWrapper.classList.add("cardPhotoWrapper");
 
-  const img = document.createElement("img");
-  img.setAttribute("hidden", true);
-  img.classList.add("cardPhoto");
-  img.setAttribute("src", actor.photo);
-  img.setAttribute("alt", actor.name);
-  img.addEventListener("error", handlerImageError);
-  img.addEventListener("load", handlerImageLoad);
+//   const divInintial = document.createElement("div");
+//   divInintial.classList.add("cardInitial");
+//   divInintial.append(
+//     document.createTextNode(getInitial(actor.name) || "noname")
+//   );
+//   console.log(stringToColour(actor.name));
+//   divInintial.style.backgroundColor = stringToColour(actor.name);
 
-  const fullName = document.createElement("h2");
-  fullName.classList.add("cardName");
-  fullName.append(document.createTextNode(actor.name || "noname"));
+//   const img = document.createElement("img");
+//   img.setAttribute("hidden", true);
+//   img.classList.add("cardPhoto");
+//   img.setAttribute("src", actor.photo);
+//   img.setAttribute("alt", actor.name);
+//   img.addEventListener("error", handlerImageError);
+//   img.addEventListener("load", handlerImageLoad);
 
-  const description = document.createElement("p");
-  description.classList.add("cardBirthdate");
-  description.append(document.createTextNode(actor.birthdate || "not info"));
+//   const fullName = document.createElement("h2");
+//   fullName.classList.add("cardName");
+//   fullName.append(document.createTextNode(actor.name || "noname"));
 
-  divWrapper.append(divInintial, img);
-  article.append(divWrapper, fullName, description);
-  cardHTML.append(article);
-  return cardHTML;
-}
+//   const description = document.createElement("p");
+//   description.classList.add("cardBirthdate");
+//   description.append(document.createTextNode(actor.birthdate || "not info"));
+
+//   divWrapper.append(divInintial, img);
+//   article.append(divWrapper, fullName, description);
+//   cardHTML.append(article);
+//   return cardHTML;
+// }
 
 cardsContainer.append(...actorCardsHTML);
 
@@ -55,7 +80,7 @@ function handlerImageLoad({ target }) {
   target.hidden = false;
 }
 
-function createElement(tag='div', { classNames, listeners, attrs , styles}={}, children=[]) {
+function createElement(tag='div', { classNames, listeners, attrs , styles}={}, ...children) {
   const elem = document.createElement(tag);
   if (classNames) {
     elem.classList.add(...classNames);
