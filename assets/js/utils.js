@@ -12,3 +12,41 @@ const stringToColour = function(str) {
 }
 
 const getInitial=(name)=>(name==='')?'':name.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
+
+function handlerImageError({ target }) {
+  target.remove();
+}
+function handlerImageLoad({ target }) {
+  target.hidden = false;
+}
+/**
+ * 
+ * @param {string} tag 
+ * @param {object} options { classNames[], listeners{}, attrs{}, styles{}}
+ * @param  {...Node} children 
+ * @returns {Node}
+ */
+function createElement(tag='div', { classNames, listeners, attrs , styles, options}={}, ...children) {
+  const elem = document.createElement(tag);
+  if (classNames) {
+    elem.classList.add(...classNames);
+  }
+  if (listeners) {
+    for (const [typeEvent, handler] of Object.entries(listeners)) {
+      elem.addEventListener(typeEvent, handler);
+    }
+  }
+  if (attrs) {
+    for (const [typeAttr, valueAttr] of Object.entries(attrs)) {
+      elem.setAttribute(typeAttr, valueAttr);
+    }
+  }
+  if (styles) {
+    for (const [nameStyle, valueStyle] of Object.entries(styles)) {
+      elem.style[nameStyle] = valueStyle;
+    }
+  }
+  if(options){}
+  elem.append(...children);
+  return elem;
+}
