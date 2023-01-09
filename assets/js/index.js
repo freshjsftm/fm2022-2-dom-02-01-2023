@@ -1,7 +1,7 @@
 "use strict";
 
 const userMessagesArray = [];
-
+const messagesList = document.getElementById("messages");
 const rootForm = document.getElementById("root-form");
 rootForm.addEventListener("submit", handlerForm);
 
@@ -11,14 +11,13 @@ function handlerForm(event) {
     target: { textInput },
   } = event;
   event.preventDefault();
-  console.log("value:", textInput.value);
-  console.log(target);
   const userInput = textInput.value.trim();
-  //додавати введене значення до масиву userMessagesArray
-  if (userInput) {
+  if (userInput) {//validation 
     userMessagesArray.push(userInput);
-    //очищати форму після додавання
+    // створити новий пункт і додати його до списку
+    const li = createElement('li',{}, userInput);
+    messagesList.append(li);
+
     target.reset();
   }
-  console.log(userMessagesArray);
 }
