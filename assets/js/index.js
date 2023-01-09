@@ -1,11 +1,22 @@
 "use strict";
 
 const rootForm = document.getElementById("root-form");
-// console.log(rootForm)
+//const [, btnSubmit] = rootForm.elements;
+//console.log(btnSubmit);
 // console.dir(rootForm)
 // console.dir(rootForm.elements.textInput)
 
-rootForm.addEventListener("submit", (event) => {
+// btnSubmit.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   console.log('event.type:', event.type);
+// });
+
+rootForm.addEventListener("submit", handlerForm);
+
+function handlerForm(event) {
+  const {
+    target: { textInput },
+  } = event;
   event.preventDefault();
-  console.log(rootForm.elements.textInput.value);
-});
+  console.log("value:", textInput.value);
+}
