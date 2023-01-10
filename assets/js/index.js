@@ -16,18 +16,30 @@ Now I need a place to hide away.
 Oh, I believe in yesterday.
 `;
 const template1 = /\b([a-z]+)'([a-z]+)\b/gi;
-const newStr = str.replace(template1, '$1^$2');
+const newStr = str.replace(template1, "$1^$2");
 //console.log(newStr)
-const template2 = new RegExp('^\\w{1,14}$', "g");
+const template2 = new RegExp("^\\w{1,14}$", "g");
 
 // дз
-// написати регулярний вираз, який буде валідувати  
+// написати регулярний вираз, який буде валідувати
 // ім'я файлу картинки з розширенням png або webp
 
 const userMessagesArray = [];
 const messagesList = document.getElementById("messages");
 const rootForm = document.getElementById("root-form");
 const textInput = rootForm.textInput;
+
+textInput.addEventListener("input", (event)=>{
+  const pattern = /[а-я]+/i;
+  console.log(event.target.value);
+  if(pattern.test(event.target.value)){
+    event.target.style.backgroundColor = 'red';
+  }else{
+    event.target.style.backgroundColor = '';
+  }
+  console.log(event.keyCode);
+});
+
 rootForm.addEventListener("submit", handlerForm);
 
 function handlerForm(event) {
