@@ -1,21 +1,28 @@
 "use strict";
 
-const text = document.getElementById("text");
+const user = {
+  id: 1,
+  firsName: "Brad",
+  lastName: "Pitt",
+  age: 59,
+  getFullName() {
+    return `${this.firsName} ${this.lastName}`;
+  },
+  children:['Max', 'Marry'],
+  isAdult: true,
+  hasPet: undefined,
+  isUkraine: null,
+  [Symbol('symbol')]:'symbol',
+  birthdate:{
+    day:18,
+    month:12,
+    year:1963,
+  },
+};
+console.log(user);
+const serializeUser = JSON.stringify(user);
+console.log(serializeUser);
 
-const btn = document.getElementById("btn");
 
-const idTimeout = setInterval(() => {
-  console.log("subscribe!");
-}, 1500);
-
-btn.addEventListener("click", () => {
-  clearInterval(idTimeout)
-});
-
-// console.log(1);
-// setTimeout(()=>{
-//   console.log(3);
-// }, 0);
-// console.log(2);
-
-
+const deserializeUser = JSON.parse(serializeUser);
+console.log(deserializeUser);

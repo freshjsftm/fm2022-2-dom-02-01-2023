@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "firsName": "Brad",
+    "lastName": "Pitt",
+    "age": 59,
+    "children": ["Max", "Marry"],
+    "isAdult": true,
+    "isUkraine": null,
+    "birthdate": { "day": 18, "month": 12, "year": 1963 }
+  },
+  {
+    "id": 2,
+    "firsName": "Tim",
+    "lastName": "Rot",
+    "age": 61,
+    "children": ["Max", "Marry"],
+    "isAdult": true,
+    "isUkraine": null,
+    "birthdate": { "day": 23, "month": 5, "year": 1961 }
+  }
+]
