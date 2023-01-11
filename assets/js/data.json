@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "firsName": "Brad",
+    "firstName": "Brad",
     "lastName": "Pitt",
     "age": 59,
     "children": ["Max", "Marry"],
@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "firsName": "Tim",
+    "firstName": "Tim",
     "lastName": "Rot",
     "age": 61,
     "children": ["Max", "Marry"],
