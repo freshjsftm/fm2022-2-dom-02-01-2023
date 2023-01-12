@@ -1,24 +1,47 @@
-"use strict";
+'use strict';
+// console.log("start");///s
 
-const myPromise1 = new Promise(executor);
+// setTimeout(() => {  
+//   console.log("setTimeout");//macro
+// }, 0);
 
-function executor(resolve, reject) {
-  Math.random() > 0.5 ? resolve('ok') : reject('error');
+// const pr1 = new Promise((resolve, reject) => {
+//   console.log("Promise start");///s
+//   resolve();
+//   //reject();
+//   console.log("Promise end");///s
+// });
+
+// pr1
+//   .then(() => {
+//     console.log("resolve");//micro
+//   })
+//   .catch(() => {
+//     console.log("reject");//micro
+//   })
+//   .finally(() => {
+//     console.log("finally");//micro
+//   });
+
+// console.log("end");///s
+
+
+
+function handlePromise(promise){
+  return promise.then((data)=>{
+    console.log('resolve data:', data);
+  }).catch((err)=>{
+    console.log('reject error:', err);
+  })
 }
 
-myPromise1
-.then((data)=>{console.log('resolve:', data)})
-.catch((err)=>{console.log('reject:', err)})
+const value = 45;
 
-//setTimeout(callback, 1000);
+// const valuePromise = new Promise((resolve, reject)=>{
+//   resolve(value)
+// })
 
-// function timeout(ms){
-//   return new Promise((resolve, reject)=>{
-//     setTimeout(reject, ms);
-//   })
-// }
+//const valuePromise = Promise.resolve(value);
+const valuePromise = Promise.reject(value);
 
-// timeout(3000)
-//   .then(()=>{console.log('resolve')})
-//   .catch(()=>{console.log('error')})
-//   .finally(()=>{console.log('finally')})
+handlePromise(valuePromise);
