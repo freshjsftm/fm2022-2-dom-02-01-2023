@@ -57,3 +57,20 @@ a{
   padding-top: 1rem;
   padding-bottom: 0.5rem;
 }
+
+
+
+
+
+/*////////////////////////////////*/
+.icon{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 0.5rem;
+  background-color: teal;
+  background-repeat: no-repeat;
+}
+.fb-icon{
+  background-image: url();
+}
